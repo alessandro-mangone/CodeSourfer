@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			LinearLayout ttt = (LinearLayout) findViewById(R.id.taptotop);
 			ttt.setOnClickListener(this);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
-					getAssets().open("KeyElement-code.json")));
+					getAssets().open("AMapperIMEThread-code.json")));
 			StringBuilder buffer = new StringBuilder();
 			String line;
 			while ((line = in.readLine()) != null)
@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					+ " lines.");
 			buffer = new StringBuilder();
 			in = new BufferedReader(new InputStreamReader(getAssets().open(
-					"KeyElement-structure.json")));
+					"AMapperIMEThread-structure.json")));
 			while ((line = in.readLine()) != null)
 				buffer.append(line);
 			treeView = (TreeViewList) findViewById(R.id.mainTreeView);
