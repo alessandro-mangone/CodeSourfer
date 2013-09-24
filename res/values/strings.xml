@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CodeSourfer</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hello"></string>
+
+    <string name="up_one_level">..</string>
+    <string name="current_dir">.</string>
+	<string name="open">Open</string>
+	<string name="code">Code</string>
+	<string name="line">#</string>
+	<string name="drawer_open">DOPEN</string>
+    <string name="drawer_close">DCLOSE</string>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:padding="2dip" >
+
+    <!--
+    <TextView
+        android:id="@+id/element_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dip"
+        android:text="0"
+        android:textSize="18sp" >
+    </TextView>
+    -->
+
+
+<!--  Si userà un layout per contenere il tipo "grande" (class,method,field) e delle imageview all'interno più piccole per i modificatori -->
+
+    <ImageView
+        android:id="@+id/element_type"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:contentDescription="ItemType"
+        android:padding="4dip" />
+
+    <TextView
+        android:id="@+id/element_name"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="4dip"
+        android:text="Text"
+        android:textSize="18sp" >
+    </TextView>
+
+</LinearLayout>
