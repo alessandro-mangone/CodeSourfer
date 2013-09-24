@@ -129,7 +129,7 @@ public class CodeRenderer {
 			if (in_com) {
 				text.setSpan(
 						new ForegroundColorSpan(Color
-								.parseColor(Theme.comColor)), start, length,
+								.parseColor(Theme.getComColor())), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				text.setSpan(new StyleSpan(Typeface.ITALIC), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -144,7 +144,7 @@ public class CodeRenderer {
 			} else if (in_kwd) {
 				text.setSpan(
 						new ForegroundColorSpan(Color
-								.parseColor(Theme.kwdColor)), start, length,
+								.parseColor(Theme.getKwdColor())), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				text.setSpan(new StyleSpan(Typeface.BOLD), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -159,7 +159,7 @@ public class CodeRenderer {
 			} else if (in_lit) {
 				text.setSpan(
 						new ForegroundColorSpan(Color
-								.parseColor(Theme.litColor)), start, length,
+								.parseColor(Theme.getLitColor())), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				if (textBetween.contains(System.getProperty("line.separator"))) {
 					CharSequence[] cs = theline
@@ -172,7 +172,7 @@ public class CodeRenderer {
 			} else if (in_typ) {
 				text.setSpan(
 						new ForegroundColorSpan(Color
-								.parseColor(Theme.typColor)), start, length,
+								.parseColor(Theme.getTypColor())), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				text.setSpan(new StyleSpan(Typeface.BOLD), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -187,7 +187,7 @@ public class CodeRenderer {
 			} else if (in_str) {
 				text.setSpan(
 						new ForegroundColorSpan(Color
-								.parseColor(Theme.strColor)), start, length,
+								.parseColor(Theme.getStrColor())), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				if (textBetween.contains(System.getProperty("line.separator"))) {
 					CharSequence[] cs = theline
@@ -200,7 +200,7 @@ public class CodeRenderer {
 			} else if (in_pun) {
 				text.setSpan(
 						new ForegroundColorSpan(Color
-								.parseColor(Theme.punColor)), start, length,
+								.parseColor(Theme.getPunColor())), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				if (textBetween.contains(System.getProperty("line.separator"))) {
 					CharSequence[] cs = theline
@@ -213,7 +213,7 @@ public class CodeRenderer {
 			} else if (in_pln) {
 				text.setSpan(
 						new ForegroundColorSpan(Color
-								.parseColor(Theme.plnColor)), start, length,
+								.parseColor(Theme.getPlnColor())), start, length,
 						Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				if (textBetween.contains(System.getProperty("line.separator"))) {
 					CharSequence[] cs = theline

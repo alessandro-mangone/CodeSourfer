@@ -110,9 +110,9 @@ public class ClassStructAdapter extends AbstractTreeViewAdapter<Long> {
 	public View updateView(View view, TreeNodeInfo<Long> treeNodeInfo) {
 		long id = treeNodeInfo.getId();
 		if (id % 2 == 0)
-			view.setBackgroundColor(Color.parseColor(Theme.row1));
+			view.setBackgroundColor(Color.parseColor(Theme.getRow1()));
 		else
-			view.setBackgroundColor(Color.parseColor(Theme.row2));
+			view.setBackgroundColor(Color.parseColor(Theme.getRow2()));
 		TextView name = (TextView) view.findViewById(R.id.element_name);
 		ImageView type = (ImageView) view.findViewById(R.id.element_type);
 		// Log.i("Nodes","ID="+treeNodeInfo.getId()+",LVL="+treeNodeInfo.getLevel()+",");
@@ -174,9 +174,9 @@ public class ClassStructAdapter extends AbstractTreeViewAdapter<Long> {
 	public Drawable getBackgroundDrawable(final TreeNodeInfo<Long> treeNodeInfo) {
 		long l = treeNodeInfo.getId() % 2;
 		if (l == 0) {
-			return new ColorDrawable(Color.parseColor(Theme.row1));
+			return new ColorDrawable(Color.parseColor(Theme.getRow1()));
 		} else {
-			return new ColorDrawable(Color.parseColor(Theme.row2));
+			return new ColorDrawable(Color.parseColor(Theme.getRow2()));
 		}
 	}
 	

@@ -64,14 +64,14 @@ public class SourceRowAdapter extends BaseAdapter {
 			v = inflater.inflate(R.layout.source_line, null);
 		}
 		if (pos % 2 == 0)
-			v.setBackgroundColor(Color.parseColor(Theme.row1));
+			v.setBackgroundColor(Color.parseColor(Theme.getRow1()));
 		else
-			v.setBackgroundColor(Color.parseColor(Theme.row2));
+			v.setBackgroundColor(Color.parseColor(Theme.getRow2()));
 		LinearLayout row = (LinearLayout) v.findViewById(R.id.sourcerow);
 		TextView linenumber = (TextView) v.findViewById(R.id.linenumber);
 		TextView linecode = (TextView) v.findViewById(R.id.linecode);
 		linenumber.setText(Integer.toString(pos + 1));
-		linenumber.setTextColor(Color.parseColor(Theme.lineNumColor));
+		linenumber.setTextColor(Color.parseColor(Theme.getLineNumColor()));
 		linenumber.setTypeface(null, Typeface.BOLD);
 		linecode.setText(entry.getCode(), TextView.BufferType.SPANNABLE);
 
