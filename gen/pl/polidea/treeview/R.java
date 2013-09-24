@@ -41,9 +41,9 @@ public final class R {
 		public static final int left = 0x7f040002;
 		public static final int right = 0x7f040003;
 		public static final int top = 0x7f040000;
-		public static final int treeview_list_item_frame = 0x7f040021;
-		public static final int treeview_list_item_image = 0x7f040020;
-		public static final int treeview_list_item_image_layout = 0x7f04001f;
+		public static final int treeview_list_item_frame = 0x7f040020;
+		public static final int treeview_list_item_image = 0x7f04001f;
+		public static final int treeview_list_item_image_layout = 0x7f04001e;
 	}
 	public static final class layout {
 		public static final int tree_list_item_wrapper = 0x7f030007;

@@ -11,6 +11,7 @@ public class Theme {
 	private static String row1 ="#151515";
 	private static String row2 ="#111111";
 	private static String lineNumColor="#B54848";
+	private static String highlightColor="#420062";
 	public static String getComColor() {
 		return comColor;
 	}
@@ -70,5 +71,11 @@ public class Theme {
 	}
 	public static void setLineNumColor(String lineNumColor) {
 		Theme.lineNumColor = lineNumColor;
+	}
+	public static String getHighlightColor() {
+		return highlightColor;
+	}
+	public static void setHighlightColor(String highlightColor){
+		Theme.highlightColor=highlightColor;
 	}
 }

@@ -15,6 +15,7 @@ import com.vektor.sourfer.ui.SourceRowAdapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			LinearLayout ttt = (LinearLayout) findViewById(R.id.taptotop);
 			ttt.setOnClickListener(this);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
-					getAssets().open("AMapperIMEThread-code.json")));
+					getAssets().open("KeyElement-code.json")));
 			StringBuilder buffer = new StringBuilder();
 			String line;
 			while ((line = in.readLine()) != null)
@@ -63,7 +64,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					+ " lines.");
 			buffer = new StringBuilder();
 			in = new BufferedReader(new InputStreamReader(getAssets().open(
-					"AMapperIMEThread-structure.json")));
+					"KeyElement-structure.json")));
 			while ((line = in.readLine()) != null)
 				buffer.append(line);
 			treeView = (TreeViewList) findViewById(R.id.mainTreeView);
@@ -111,7 +112,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		int id = v.getId();
 		if (id == R.id.button1) {
 			if (thecode.getCount() > 0) {
-				final EditText input = new EditText(getApplicationContext());
+				final EditText input = new EditText(MainActivity.this);
 				input.setInputType(InputType.TYPE_CLASS_NUMBER);
 				new AlertDialog.Builder(MainActivity.this)
 						.setTitle(
@@ -126,14 +127,15 @@ public class MainActivity extends Activity implements OnClickListener {
 												.toString();
 										thecode.setSelection(Integer
 												.parseInt(value) - 1);
-										// Do something with value!
+										//thecode.getChildAt(Integer.parseInt(value)-1).setBackgroundColor(Color.BLUE);
+										
+										new AlertDialog.Builder(MainActivity.this).setTitle("TEST").setMessage(thecode.getChildCount()+" children.").create().show();
 									}
 								})
 						.setNegativeButton("Cancel",
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
 											int whichButton) {
-										// Canceled.
 										dialog.dismiss();
 									}
 								}).create().show();

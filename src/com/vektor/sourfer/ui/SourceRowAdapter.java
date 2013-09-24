@@ -29,14 +29,32 @@ public class SourceRowAdapter extends BaseAdapter {
 	private Context context;
 	private sourceCode code;
 	private ArrayList<parsedLine> lines;
+	private boolean highlighted = false;
+	private Integer from, to;
 
 	public SourceRowAdapter(Context context, sourceCode code) {
 		this.context = context;
 		this.code = code;
-		//Log.i("Lines",code.getCode().get(0).getCode().split("\\r?\\n").length+" LINES");
+		// Log.i("Lines",code.getCode().get(0).getCode().split("\\r?\\n").length+" LINES");
 		lines = CodeRenderer.parse(code.getCode());
-		Log.i("Lines","Sizeparsed "+lines.size());
+		Log.i("Lines", "Sizeparsed " + lines.size());
 		code.getCode().clear();
+		from = null;
+		to = null;
+	}
+
+	public void setHighlight(int from, int to) {
+		Log.i("Highlight",from+" "+to);
+		if ((this.from != null && this.from == from)
+				&& (this.to != null && this.to == to)) {
+			highlighted = false;
+			this.from = null;
+			this.to = null;
+		} else {
+			highlighted = true;
+			this.from = from;
+			this.to = to;
+		}
 	}
 
 	@Override
@@ -56,17 +74,21 @@ public class SourceRowAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int pos, View v, ViewGroup vg) {
-		//Log.i("GetView","POS "+pos);
+		// Log.i("GetView","POS "+pos);
 		parsedLine entry = lines.get(pos);
 		if (null == v) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inflater.inflate(R.layout.source_line, null);
 		}
-		if (pos % 2 == 0)
-			v.setBackgroundColor(Color.parseColor(Theme.getRow1()));
-		else
-			v.setBackgroundColor(Color.parseColor(Theme.getRow2()));
+		if (highlighted && pos>=from && pos<=to) {
+			v.setBackgroundColor(Color.parseColor(Theme.getHighlightColor()));
+		} else {
+			if (pos % 2 == 0)
+				v.setBackgroundColor(Color.parseColor(Theme.getRow1()));
+			else
+				v.setBackgroundColor(Color.parseColor(Theme.getRow2()));
+		}
 		LinearLayout row = (LinearLayout) v.findViewById(R.id.sourcerow);
 		TextView linenumber = (TextView) v.findViewById(R.id.linenumber);
 		TextView linecode = (TextView) v.findViewById(R.id.linecode);
@@ -76,5 +98,10 @@ public class SourceRowAdapter extends BaseAdapter {
 		linecode.setText(entry.getCode(), TextView.BufferType.SPANNABLE);
 
 		return v;
+	}
+
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
 	}
 }

@@ -194,14 +194,19 @@ public class ClassStructAdapter extends AbstractTreeViewAdapter<Long> {
         if (info.isWithChildren()) {
             super.handleItemClick(view, id);
         } else {
-            //final ViewGroup vg = (ViewGroup) view;
             if(methods.containsKey((Long)id)){
-            	associatedList.setSelection(methods.get((Long)id).getLineStart()-1);
-            	//Log.i("method",methods.get((Long)id).getName()+" starts at line "+methods.get((Long)id).getLineStart()); 
+            	classMethod method = methods.get((Long)id);
+            	SourceRowAdapter sra = (SourceRowAdapter)associatedList.getAdapter();
+            	sra.setHighlight(method.getLineStart()-1, method.getLineEnd()-1);
+            	sra.notifyDataSetChanged();
+            	associatedList.setSelection(method.getLineStart()-1);
             }
             else if(fields.containsKey((Long)id)){
-            	associatedList.setSelection(fields.get((Long)id).getLineStart()-1);
-            	//Log.i("method",fields.get((Long)id).getName()+" starts at line "+fields.get((Long)id).getLineStart()); 
+            	classField field = fields.get((Long)id);
+            	SourceRowAdapter sra = (SourceRowAdapter)associatedList.getAdapter();
+            	sra.setHighlight(field.getLineStart()-1, field.getLineEnd()-1);
+            	sra.notifyDataSetChanged();
+            	associatedList.setSelection(field.getLineStart()-1);
             }
         }
     }
