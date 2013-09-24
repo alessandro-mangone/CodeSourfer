@@ -115,10 +115,14 @@ public class ClassStructAdapter extends AbstractTreeViewAdapter<Long> {
 			view.setBackgroundColor(Color.parseColor(Theme.getRow2()));
 		TextView name = (TextView) view.findViewById(R.id.element_name);
 		ImageView type = (ImageView) view.findViewById(R.id.element_type);
+		TextView spacer = (TextView) view.findViewById(R.id.spacer);
+		TextView elemtype = (TextView) view.findViewById(R.id.elem_type);
+		
 		// Log.i("Nodes","ID="+treeNodeInfo.getId()+",LVL="+treeNodeInfo.getLevel()+",");
 		if (fields.containsKey(id)) {
 			classField field = fields.get(id);
 			name.setText(field.getName());
+			elemtype.setText(field.getType());
 			if(field.getAccess().equals("public")){
 				type.setImageDrawable(context.getResources().getDrawable(R.drawable.public_field));
 			}
@@ -136,6 +140,7 @@ public class ClassStructAdapter extends AbstractTreeViewAdapter<Long> {
 		if (methods.containsKey(id)) {
 			classMethod method = methods.get(id);
 			name.setText(method.getName());
+			elemtype.setText(method.getReturnType());
 			if(method.getAccess().equals("public")){
 				type.setImageDrawable(context.getResources().getDrawable(R.drawable.public_method));
 			}
@@ -153,6 +158,8 @@ public class ClassStructAdapter extends AbstractTreeViewAdapter<Long> {
 		if (types.containsKey(id)) {
 			classStructure classe = types.get(id);
 			name.setText(classe.getName());
+			spacer.setVisibility(View.GONE);
+			elemtype.setVisibility(View.GONE);
 			if(classe.getAccess().equals("public")){
 				type.setImageDrawable(context.getResources().getDrawable(R.drawable.public_class));
 			}
@@ -190,11 +197,11 @@ public class ClassStructAdapter extends AbstractTreeViewAdapter<Long> {
             //final ViewGroup vg = (ViewGroup) view;
             if(methods.containsKey((Long)id)){
             	associatedList.setSelection(methods.get((Long)id).getLineStart()-1);
-            	Log.i("method",methods.get((Long)id).getName()+" starts at line "+methods.get((Long)id).getLineStart()); 
+            	//Log.i("method",methods.get((Long)id).getName()+" starts at line "+methods.get((Long)id).getLineStart()); 
             }
             else if(fields.containsKey((Long)id)){
             	associatedList.setSelection(fields.get((Long)id).getLineStart()-1);
-            	Log.i("method",fields.get((Long)id).getName()+" starts at line "+fields.get((Long)id).getLineStart()); 
+            	//Log.i("method",fields.get((Long)id).getName()+" starts at line "+fields.get((Long)id).getLineStart()); 
             }
         }
     }

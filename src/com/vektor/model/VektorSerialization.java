@@ -139,6 +139,8 @@ public class VektorSerialization {
 	public static class classField {
 		@SerializedName("name")
 		private String name;
+		@SerializedName("type")
+		private String type;
 		@SerializedName("access")
 		private String access;
 		@SerializedName("final")
@@ -177,12 +179,16 @@ public class VektorSerialization {
 		public int getLineEnd() {
 			return lineEnd;
 		}
-
+		public String getType(){
+			return type;
+		}
 	}
 
 	public static class classMethod {
 		@SerializedName("name")
 		private String name;
+		@SerializedName("returns")
+		private String returnType;
 		@SerializedName("access")
 		private String access;
 		@SerializedName("abstract")
@@ -226,7 +232,9 @@ public class VektorSerialization {
 		public int getLineEnd() {
 			return lineEnd;
 		}
-
+		public String getReturnType(){
+			return returnType;
+		}
 	}
 
 	public static class parsedLine {
