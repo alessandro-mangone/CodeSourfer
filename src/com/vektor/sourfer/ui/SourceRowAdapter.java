@@ -35,7 +35,6 @@ public class SourceRowAdapter extends BaseAdapter {
 	public SourceRowAdapter(Context context, sourceCode code) {
 		this.context = context;
 		this.code = code;
-		// Log.i("Lines",code.getCode().get(0).getCode().split("\\r?\\n").length+" LINES");
 		lines = CodeRenderer.parse(code.getCode());
 		Log.i("Lines", "Sizeparsed " + lines.size());
 		code.getCode().clear();
