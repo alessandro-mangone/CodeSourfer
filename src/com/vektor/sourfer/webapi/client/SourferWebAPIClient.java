@@ -1,0 +1,32 @@
+package com.vektor.sourfer.webapi.client;
+
+import android.util.Log;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.vektor.model.VektorSerialization.fsElement;
+
+public class SourferWebAPIClient {
+	// private final static String baseURL =
+	// "http://api.alessandromangone.com/";
+	private final static String baseURL = "http://papapapapa.altervista.org/";
+
+	private static AsyncHttpClient client = new AsyncHttpClient();
+
+	public static void get(String url, RequestParams params,
+			AsyncHttpResponseHandler responseHandler) {
+		client.get(getAbsoluteUrl(url), params, responseHandler);
+	}
+
+	public static void post(String url, RequestParams params,
+			AsyncHttpResponseHandler responseHandler) {
+		client.post(getAbsoluteUrl(url), params, responseHandler);
+	}
+
+	private static String getAbsoluteUrl(String relativeUrl) {
+		Log.i("AbsURL", baseURL + relativeUrl);
+		return baseURL + relativeUrl;
+	}
+
+}

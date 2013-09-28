@@ -13,4 +13,10 @@
 	<string name="line">#</string>
 	<string name="drawer_open">DOPEN</string>
     <string name="drawer_close">DCLOSE</string>
+    <string name="goto_line">Go To Line</string>
+    <string name="home">Home</string>
+    <string name="quit">Quit</string>
+    <string name="options">Options</string>
+    <string name="conn_status">Connection status:</string>
+    <string name="refresh">Refresh</string>
 </resources>

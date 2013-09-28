@@ -1,0 +1,4 @@
+Blue (undeclared) = #0056a4
+Green (public) = #085d24
+Yellow (protected) = #fff02a
+Red (private) = #9c0f17

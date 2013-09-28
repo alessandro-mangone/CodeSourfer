@@ -8,9 +8,39 @@ import android.text.SpannableString;
 import android.text.SpannedString;
 
 import com.google.gson.annotations.SerializedName;
+import com.vektor.model.VektorSerialization.fsElement;
 
 public class VektorSerialization {
-
+	
+	public static class fs{
+		@SerializedName("files")
+		private ArrayList<fsElement> files;
+		public fs(ArrayList<fsElement> files) {
+			this.files=files;
+		}
+		public ArrayList<fsElement> getFiles(){
+			return files;
+		}
+	}
+	
+	public static class fsElement {
+		@SerializedName("name")
+		private String name;
+		@SerializedName("isDir")
+		private boolean isDir;
+		@SerializedName("curDir")
+		private String curDir;
+		public String getName() {
+			return name;
+		}
+		public boolean isDir() {
+			return isDir;
+		}
+		public String getCurDir() {
+			return curDir;
+		}
+	}
+	
 	public static class sourceCode {
 		@SerializedName("status")
 		private String status;

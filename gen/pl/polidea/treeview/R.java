@@ -21,12 +21,12 @@ public final class R {
 		public static final int collapsed = 0x7f020002;
 		public static final int divider = 0x7f020003;
 		public static final int expanded = 0x7f020005;
-		public static final int list_selector_background = 0x7f02000a;
-		public static final int list_selector_background_disabled = 0x7f02000b;
-		public static final int list_selector_background_focus = 0x7f02000c;
-		public static final int list_selector_background_longpress = 0x7f02000d;
-		public static final int list_selector_background_pressed = 0x7f02000e;
-		public static final int list_selector_background_transition = 0x7f02000f;
+		public static final int list_selector_background = 0x7f020015;
+		public static final int list_selector_background_disabled = 0x7f020016;
+		public static final int list_selector_background_focus = 0x7f020017;
+		public static final int list_selector_background_longpress = 0x7f020018;
+		public static final int list_selector_background_pressed = 0x7f020019;
+		public static final int list_selector_background_transition = 0x7f02001a;
 	}
 	public static final class id {
 		public static final int bottom = 0x7f040001;
@@ -41,12 +41,12 @@ public final class R {
 		public static final int left = 0x7f040002;
 		public static final int right = 0x7f040003;
 		public static final int top = 0x7f040000;
-		public static final int treeview_list_item_frame = 0x7f040020;
-		public static final int treeview_list_item_image = 0x7f04001f;
-		public static final int treeview_list_item_image_layout = 0x7f04001e;
+		public static final int treeview_list_item_frame = 0x7f04002a;
+		public static final int treeview_list_item_image = 0x7f040029;
+		public static final int treeview_list_item_image_layout = 0x7f040028;
 	}
 	public static final class layout {
-		public static final int tree_list_item_wrapper = 0x7f030007;
+		public static final int tree_list_item_wrapper = 0x7f030005;
 	}
 	public static final class string {
 		public static final int collapse_button_content_description = 0x7f050000;

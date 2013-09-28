@@ -43,7 +43,6 @@ public class SourceRowAdapter extends BaseAdapter {
 	}
 
 	public void setHighlight(int from, int to) {
-		Log.i("Highlight",from+" "+to);
 		if ((this.from != null && this.from == from)
 				&& (this.to != null && this.to == to)) {
 			highlighted = false;

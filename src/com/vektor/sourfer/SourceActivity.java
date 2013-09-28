@@ -15,6 +15,7 @@ import com.vektor.sourfer.ui.SourceRowAdapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -32,18 +33,19 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class SourceActivity extends Activity implements OnClickListener {
 
-	private boolean isSearching;
 	private ListView thecode;
 	private TreeViewList treeView;
 	private InMemoryTreeStateManager<Long> manager;
-
+	private String currentPath;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Intent i = getIntent();
+		Bundle data = i.getBundleExtra("javaclass");
+		String code = data.getString("code");
+		String structure = data.getString("structure");
 		requestWindowFeature(Window.FEATURE_PROGRESS);
-		isSearching = false;
-		CookieSyncManager.createInstance(this);
 		setContentView(R.layout.source_browser);
 		thecode = (ListView) findViewById(R.id.source_code_list);
 		try {
@@ -51,24 +53,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			ttt.setOnClickListener(this);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					getAssets().open("KeyElement-code.json")));
-			StringBuilder buffer = new StringBuilder();
-			String line;
-			while ((line = in.readLine()) != null)
-				buffer.append(line);
-			in.close();
 			long start = System.currentTimeMillis();
 			thecode.setAdapter(new SourceRowAdapter(getApplicationContext(),
-					new Gson().fromJson(buffer.toString(), sourceCode.class)));
+					new Gson().fromJson(code, sourceCode.class)));
 			Log.i("RenderTime", (System.currentTimeMillis() - start)
 					+ " ms, rendered " + thecode.getAdapter().getCount()
 					+ " lines.");
-			buffer = new StringBuilder();
-			in = new BufferedReader(new InputStreamReader(getAssets().open(
-					"KeyElement-structure.json")));
-			while ((line = in.readLine()) != null)
-				buffer.append(line);
 			treeView = (TreeViewList) findViewById(R.id.mainTreeView);
-			classDocument doc = new Gson().fromJson(buffer.toString(),
+			classDocument doc = new Gson().fromJson(structure,
 					classDocument.class);
 			manager = new InMemoryTreeStateManager<Long>();
 			ClassStructAdapter structAdapter = new ClassStructAdapter(this,
@@ -91,19 +83,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 
-	/**
-	 * Modify the menus according to the searching mode and matches
-	 */
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		if (isSearching) {
-			menu.findItem(R.id.next_menu).setEnabled(true);
-			menu.findItem(R.id.clear_menu).setEnabled(true);
-		} else {
-			menu.findItem(R.id.next_menu).setEnabled(false);
-			menu.findItem(R.id.clear_menu).setEnabled(false);
-		}
-
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -112,9 +93,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		int id = v.getId();
 		if (id == R.id.button1) {
 			if (thecode.getCount() > 0) {
-				final EditText input = new EditText(MainActivity.this);
+				final EditText input = new EditText(SourceActivity.this);
 				input.setInputType(InputType.TYPE_CLASS_NUMBER);
-				new AlertDialog.Builder(MainActivity.this)
+				new AlertDialog.Builder(SourceActivity.this)
 						.setTitle(
 								"Go to line (Accepted values between 1 and "
 										+ thecode.getCount() + "):")
@@ -127,9 +108,6 @@ public class MainActivity extends Activity implements OnClickListener {
 												.toString();
 										thecode.setSelection(Integer
 												.parseInt(value) - 1);
-										//thecode.getChildAt(Integer.parseInt(value)-1).setBackgroundColor(Color.BLUE);
-										
-										new AlertDialog.Builder(MainActivity.this).setTitle("TEST").setMessage(thecode.getChildCount()+" children.").create().show();
 									}
 								})
 						.setNegativeButton("Cancel",
@@ -145,7 +123,4 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
-
-
-	
 }
