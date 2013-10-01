@@ -7,6 +7,7 @@ import com.vektor.model.VektorSerialization.fsElement;
 import com.vektor.sourfer.R;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,8 @@ public class FileBrowserAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inflater.inflate(R.layout.file_browser_row, null);
 		}
+		if(position%2==0) v.setBackgroundColor(Color.parseColor(Theme.getRow1()));
+		else v.setBackgroundColor(Color.parseColor(Theme.getRow2()));
 		ImageView filetype = (ImageView) v.findViewById(R.id.fs_type);
 		TextView filename = (TextView) v.findViewById(R.id.fs_name);
 		if(element.isDir()){

@@ -21,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FileBrowserActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
@@ -28,10 +29,13 @@ public class FileBrowserActivity extends Activity implements OnClickListener,
 	private ListView filebrowser;
 	private Button refresh;
 	private fsElement elem;
+	public static String code;
+	public static String structure;
+	private String curDir = "";
 	private AsyncHttpResponseHandler resHandlerDir = new AsyncHttpResponseHandler() {
 		@Override
 		public void onSuccess(String response) {
-			Log.i("Success", response);
+			Log.i("Success", "OK");
 			status.setText(getResources().getString(R.string.conn_status)
 					+ " OK");
 			try {
@@ -45,7 +49,7 @@ public class FileBrowserActivity extends Activity implements OnClickListener,
 
 		@Override
 		public void onFailure(Throwable error, String response) {
-			Log.i("Failure", response);
+			Log.i("Failure", "FAIL");
 			status.setText(getResources().getString(R.string.conn_status)
 					+ " FAIL");
 			refresh.setEnabled(true);
@@ -54,18 +58,16 @@ public class FileBrowserActivity extends Activity implements OnClickListener,
 	private AsyncHttpResponseHandler resHandlerCode = new AsyncHttpResponseHandler() {
 		@Override
 		public void onSuccess(String response) {
-			Log.i("Success", response);
+			Log.i("Success", "OK");
 			status.setText(getResources().getString(R.string.conn_status)
 					+ " OK");
 			final String theCode=response;
-			SourferWebAPIClient.get(elem.getCurDir().substring(1)+File.separator+elem.getName()+"-structure.json", null, new AsyncHttpResponseHandler(){
+			SourferWebAPIClient.get(elem.getCurDir()+elem.getName()+"-structure.json", null, new AsyncHttpResponseHandler(){
 				@Override
 				public void onSuccess(String response){
-					Bundle data = new Bundle();
-					data.putString("code", theCode);
-					data.putString("structure", response);
+					code=theCode;
+					structure=response;
 					Intent i = new Intent(FileBrowserActivity.this,SourceActivity.class);
-					i.putExtra("javaclass", data);
 					startActivity(i);
 				}
 				@Override
@@ -78,12 +80,14 @@ public class FileBrowserActivity extends Activity implements OnClickListener,
 
 		@Override
 		public void onFailure(Throwable error, String response) {
-			Log.i("Failure", response);
+			Log.i("Failure", "Fail");
 			status.setText(getResources().getString(R.string.conn_status)
 					+ " FAIL");
 			refresh.setEnabled(true);
 		}
 	};
+	
+	private boolean backonce=false;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -116,17 +120,40 @@ public class FileBrowserActivity extends Activity implements OnClickListener,
 			FileBrowserAdapter fba = (FileBrowserAdapter) arg0.getAdapter();
 			elem = fba.getItem(arg2);
 			if(elem.isDir()){
-				SourferWebAPIClient.get(elem.getCurDir().substring(1)+File.separator+"dir.json", null, resHandlerDir);
+				SourferWebAPIClient.get(elem.getCurDir()+"dir.json", null, resHandlerDir);
+				curDir=elem.getCurDir();
 			}
 			else{
-				SourferWebAPIClient.get(elem.getCurDir().substring(1)+File.separator+elem.getName()+"-code.json", null, resHandlerCode);
+				SourferWebAPIClient.get(elem.getCurDir()+elem.getName()+"-code.json", null, resHandlerCode);
 			}
 			Log.i("DBG",elem.getCurDir()+" ");
+			
 		}
 	}
 	
 	@Override
 	public void onBackPressed(){
-		super.onBackPressed();
+		if(!curDir.equals("")) {
+			backonce=false;
+			SourferWebAPIClient.get(getParentPath()+"dir.json", null, resHandlerDir);
+		}
+		else if(backonce){
+			super.onBackPressed();
+		}
+		else {
+			backonce=true;
+			Toast.makeText(getApplicationContext(), getResources().getString(R.string.back_message), Toast.LENGTH_LONG).show();
+		}
+	}
+	
+	private String getParentPath(){
+		String[] url=curDir.split(File.separator);
+		StringBuilder sb= new StringBuilder();
+		for(int i=0;i<url.length-1;i++){
+			sb.append(url[i]).append(File.separator);
+		}
+		Log.i("ParentPath",sb.toString());
+		curDir=sb.toString();
+		return sb.toString();
 	}
 }

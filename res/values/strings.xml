@@ -19,4 +19,5 @@
     <string name="options">Options</string>
     <string name="conn_status">Connection status:</string>
     <string name="refresh">Refresh</string>
+    <string name="back_message">Press back once again to exit.</string>
 </resources>

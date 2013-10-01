@@ -8,9 +8,8 @@ import com.loopj.android.http.RequestParams;
 import com.vektor.model.VektorSerialization.fsElement;
 
 public class SourferWebAPIClient {
-	// private final static String baseURL =
-	// "http://api.alessandromangone.com/";
-	private final static String baseURL = "http://papapapapa.altervista.org/";
+	 private final static String baseURL = "http://api.alessandromangone.com/";
+	//private final static String baseURL = "http://papapapapa.altervista.org/";
 
 	private static AsyncHttpClient client = new AsyncHttpClient();
 

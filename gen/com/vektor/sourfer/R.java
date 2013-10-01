@@ -228,6 +228,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050001;
+        public static final int back_message=0x7f050012;
         public static final int code=0x7f050008;
         public static final int collapse_button_content_description=0x7f050000;
         public static final int conn_status=0x7f050010;
